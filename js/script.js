@@ -4,35 +4,37 @@
       // displayMovieInfo function re-renders the HTML to display the appropriate content
       function displayCurrentWeather() {
 
-        var zipLocation = $(this).attr("data-name");
-        var queryURL = "api.openweathermap.org/data/2.5/weather?zip=" + zipLocation + "&appid=cee88101192942cc1ddef8fb37f11635";
+        //var zipLocation = $(this).attr("data-name");
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=06804,us&appid=cee88101192942cc1ddef8fb37f11635";
 
-        // Creating an AJAX call for the specific movie button being clicked
+        // Creating an AJAX call for the current weather 
         $.ajax({
           url: queryURL,
           method: "GET"
         }).then(function(response) {
 
-          // Creating a div to hold the movie
-          var movieDiv = $("<div class='movie'>");
+          console.log(response);
+          // Creating a div to hold the current weather
+          var weatherDiv= $("<div class='weatherInfo'>");
 
-          // Storing the rating data
-          var rating = response.Rated;
+          // Storing the weather data
+          var weather = response.weather[0].main;
 
-          // Creating an element to have the rating displayed
-          var pOne = $("<p>").text("Rating: " + rating);
+          // Creating an element to have weather displayed
+          var pOne = $("<p>").text("Weather: " + weather);
+          console.log(pOne)
 
           // Displaying the rating
-          movieDiv.append(pOne);
+          weatherDiv.append(pOne);
 
           // Storing the release year
-          var released = response.Released;
+          var humidity = response.main.humidity;
 
           // Creating an element to hold the release year
-          var pTwo = $("<p>").text("Released: " + released);
+          var pTwo = $("<p>").text("Humidity: " + humidity + "%");
 
           // Displaying the release year
-          movieDiv.append(pTwo);
+          weatherDiv.append(pTwo);
 
           // Storing the plot
           var plot = response.Plot;
@@ -41,7 +43,7 @@
           var pThree = $("<p>").text("Plot: " + plot);
 
           // Appending the plot
-          movieDiv.append(pThree);
+          weatherDiv.append(pThree);
 
           // Retrieving the URL for the image
           var imgURL = response.Poster;
@@ -50,10 +52,10 @@
           var image = $("<img>").attr("src", imgURL);
 
           // Appending the image
-          movieDiv.append(image);
+          weatherDiv.append(image);
 
           // Putting the entire movie above the previous movies
-          $("#movies-view").prepend(movieDiv);
+          $("#weather-view").prepend(weatherDiv);
         });
 
       }
@@ -96,8 +98,11 @@
       });
 
       // Adding a click event listener to all elements with a class of "movie-btn"
-      $(document).on("click", ".movie-btn", displayMovieInfo);
+      $(document).on("click", "#searchWeather", displayCurrentWeather);
 
       // Calling the renderButtons function to display the initial buttons
       renderButtons();
-    </script>
+
+      // var queryURL = "api.openweathermap.org/data/2.5/weather?zip=" + zipLocation + "&appid=cee88101192942cc1ddef8fb37f11635";
+
+ 
