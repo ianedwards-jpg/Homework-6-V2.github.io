@@ -61,6 +61,65 @@
 
       }
 
+      function fiveDayForecast() {
+
+        //var zipLocation = $("#data-name").val();
+        var zipLocation = $("#movie-input").val().trim();
+        //var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=06804,us&appid=cee88101192942cc1ddef8fb37f11635";
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipLocation + ",us&appid=cee88101192942cc1ddef8fb37f11635";
+        // Creating an AJAX call for the current weather 
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response) {
+
+          console.log(response);
+          // Creating a div to hold the current weather
+          var weatherDiv= $("<div class='weatherInfo'>");
+
+          // Storing the weather data
+          var weather = response.weather[0].main;
+
+          // Creating an element to have weather displayed
+          var pOne = $("<p>").text("Weather: " + weather);
+          console.log(pOne)
+
+          // Displaying the rating
+          weatherDiv.append(pOne);
+
+          // Storing the release year
+          var humidity = response.main.humidity;
+
+          // Creating an element to hold the release year
+          var pTwo = $("<p>").text("Humidity: " + humidity + "%");
+
+          // Displaying the release year
+          weatherDiv.append(pTwo);
+
+          // Storing the plot
+          var temperature = ((response.main.temp * 1.8) - 459.67);
+
+          // Creating an element to hold the plot
+          var tempDisplay = $("<p>").text("Temperature (F): " + temperature + "  deg.");
+
+          // Appending the plot
+          weatherDiv.append(tempDisplay);
+
+          // Retrieving the URL for the image
+          var imgURL = response.Poster;
+
+          // Creating an element to hold the image
+          var image = $("<img>").attr("src", imgURL);
+
+          // Appending the image
+          weatherDiv.append(image);
+
+          // Putting the entire movie above the previous movies
+          $("#weather-view").prepend(weatherDiv);
+        });
+
+      }
+
       // Function for displaying movie data
       function renderButtons() {
 
