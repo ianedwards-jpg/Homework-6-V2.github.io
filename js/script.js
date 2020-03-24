@@ -4,9 +4,10 @@
       // displayMovieInfo function re-renders the HTML to display the appropriate content
       function displayCurrentWeather() {
 
-        //var zipLocation = $(this).attr("data-name");
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=06804,us&appid=cee88101192942cc1ddef8fb37f11635";
-
+        //var zipLocation = $("#data-name").val();
+        var zipLocation = $("#movie-input").val().trim();
+        //var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=06804,us&appid=cee88101192942cc1ddef8fb37f11635";
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipLocation + ",us&appid=cee88101192942cc1ddef8fb37f11635";
         // Creating an AJAX call for the current weather 
         $.ajax({
           url: queryURL,
@@ -37,13 +38,13 @@
           weatherDiv.append(pTwo);
 
           // Storing the plot
-          var plot = response.Plot;
+          var temperature = ((response.main.temp * 1.8) - 459.67);
 
           // Creating an element to hold the plot
-          var pThree = $("<p>").text("Plot: " + plot);
+          var tempDisplay = $("<p>").text("Temperature (F): " + temperature + "  deg.");
 
           // Appending the plot
-          weatherDiv.append(pThree);
+          weatherDiv.append(tempDisplay);
 
           // Retrieving the URL for the image
           var imgURL = response.Poster;
