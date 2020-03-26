@@ -144,18 +144,18 @@
         }
       }
 
-      // This function handles events where a movie button is clicked
-      $("#add-movie").on("click", function(event) {
-        event.preventDefault();
-        // This line grabs the input from the textbox
-        var movie = $("#movie-input").val().trim();
+      // // This function handles events where a movie button is clicked
+      // $("#add-movie").on("click", function(event) {
+      //   event.preventDefault();
+      //   // This line grabs the input from the textbox
+      //   var movie = $("#movie-input").val().trim();
 
-        // Adding movie from the textbox to our array
-        movies.push(movie);
+      //   // Adding movie from the textbox to our array
+      //   movies.push(movie);
 
-        // Calling renderButtons which handles the processing of our movie array
-        renderButtons();
-      });
+      //   // Calling renderButtons which handles the processing of our movie array
+      //   renderButtons();
+      // });
 
       // Adding a click event listener to all elements with a class of "movie-btn"
       $(document).on("click", "#searchWeather", displayCurrentWeather);
