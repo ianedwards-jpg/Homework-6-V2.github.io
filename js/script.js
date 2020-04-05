@@ -13,10 +13,7 @@
           url: queryURL,
           method: "GET"
         }).then(function(response) {
-          // Iterate over response 5 times for 5-day forecast
-          for (var i = 0; i < 5; i++) {
-
-
+         
           console.log(response);
           // Creating a div to hold the current weather
           var weatherDiv= $("<div class='weatherInfo'>");
@@ -74,12 +71,14 @@
           url: queryURL,
           method: "GET"
         }).then(function(response) {
+           // Iterate over response 5 times for 5-day forecast
+           for (var i = 0; i < 5; i++) {
   
           console.log(response);
           // Creating a div to hold the current weather
           var colDiv= $("<div class='col'>");
 
-          var weatherCard= $("<div class='weatherInfo'>");
+          var weatherCard= $("<div class='card bg-primary text-white mb-4'>");
 
           // Storing the weather data
           var weather = response.weather[0].main;
@@ -89,7 +88,7 @@
           console.log(pOne)
 
           // Displaying the rating
-          weatherDiv.append(pOne);
+          weatherCard.append(pOne);
 
           // Storing the release year
           var humidity = response.main.humidity;
@@ -98,7 +97,7 @@
           var pTwo = $("<p>").text("Humidity: " + humidity + "%");
 
           // Displaying the release year
-          weatherDiv.append(pTwo);
+          weatherCard.append(pTwo);
 
           // Storing the plot
           var temperature = ((response.main.temp * 1.8) - 459.67);
@@ -107,7 +106,7 @@
           var tempDisplay = $("<p>").text("Temperature (F): " + temperature + "  deg.");
 
           // Appending the plot
-          weatherDiv.append(tempDisplay);
+          weatherCard.append(tempDisplay);
 
           // Retrieving the URL for the image
           var imgURL = response.Poster;
@@ -116,10 +115,12 @@
           var image = $("<img>").attr("src", imgURL);
 
           // Appending the image
-          weatherDiv.append(image);
+          weatherCard.append(image);
 
           // Putting the entire movie above the previous movies
-          $("#fiveDayView").prepend(weatherDiv);
+          colDiv.append(weatherCard)
+          $("#fiveDayView").prepend(weatherCard);
+            }
         });
 
       }
@@ -145,8 +146,8 @@
       //     a.text(movies[i]);
       //     // Adding the button to the buttons-view div
       //     $("#buttons-view").append(a);
-        }
-      }
+      //   }
+      // }
 
       // // This function handles events where a movie button is clicked
       // $("#add-movie").on("click", function(event) {
@@ -162,10 +163,10 @@
       // });
 
       // Adding a click event listener to all elements with a class of "movie-btn"
-      $(document).on("click", "#searchWeather", displayCurrentWeather);
+      $(document).one("click", "#searchWeather", displayCurrentWeather,fiveDayForecast);
 
       // Calling the renderButtons function to display the initial buttons
-      renderButtons();
+      //renderButtons();
 
       // var queryURL = "api.openweathermap.org/data/2.5/weather?zip=" + zipLocation + "&appid=cee88101192942cc1ddef8fb37f11635";
 
