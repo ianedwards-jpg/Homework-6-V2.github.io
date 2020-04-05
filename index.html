@@ -12,9 +12,9 @@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
-        crossorigin="anonymous"></script> 
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -33,10 +33,12 @@
                         <br>
                         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                             <div class="input-group">
-                                <input class="form-control" type="text" id="movie-input" placeholder="Search by zip code..."
-                                    aria-label="Search" aria-describedby="basic-addon2" />
+                                <input class="form-control" type="text" id="movie-input"
+                                    placeholder="Search by zip code..." aria-label="Search"
+                                    aria-describedby="basic-addon2" />
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button" id="searchWeather"><i class="fas fa-search"></i></button>
+                                    <button class="btn btn-primary" type="button" id="searchWeather"><i
+                                            class="fas fa-search"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -103,14 +105,24 @@
                         </div>
                         <div class="col">
                             <div class="card bg-primary text-white mb-4">
-                                <div class="card-body" id ="day5">Danger Card</div>
+                                <div class="card-body" id="day5">Danger Card</div>
                             </div>
+                         </div>
+                    </div>
+                        <br><br>
+                    <div class="row">
+                        <h2>5 Day Forecast:</h2>
                         </div>
+                    <div class="row">
+                        <div id= "fiveDayView"></div>
+                    </div>
+
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Ian Edwards 2020. Site created with OpenWeather API.</div>
+                        <div class="text-muted">Copyright &copy; Ian Edwards 2020. Site created with OpenWeather API.
+                        </div>
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
