@@ -41,7 +41,7 @@ function displayCurrentWeather() {
     var temperature = ((response.main.temp * 1.8) - 459.67);
 
     // Creating an element to hold the plot
-    var tempDisplay = $("<p>").text("Temperature (F): " + temperature + "  deg.");
+    var tempDisplay = $("<p>").text("Temperature (F): " + temperature.toFixed(1) + "  deg.");
 
     // Appending the plot
     weatherDiv.append(tempDisplay);
@@ -102,6 +102,8 @@ function fiveDayForecast() {
           // Storing the release year
           var humidity = day.main.humidity;
 
+          humidity.toFixed(2);
+
           // Creating an element to hold the release year
           var pTwo = $("<p>").text("Humidity: " + humidity + "%");
 
@@ -111,8 +113,9 @@ function fiveDayForecast() {
           // Storing the plot
           var temperature = ((day.main.temp * 1.8) - 459.67);
 
+
           // Creating an element to hold the plot
-          var tempDisplay = $("<p>").text("Temperature (F): " + temperature + "  deg.");
+          var tempDisplay = $("<p>").text("Temperature (F): " + temperature.toFixed(1) + "  deg.");
 
           // Appending the plot
           weatherCard.append(tempDisplay);
